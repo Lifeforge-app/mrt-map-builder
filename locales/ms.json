@@ -1,0 +1,72 @@
+{
+  "title": "Pembina Peta MRT",
+  "description": "Bina dan visualkan peta laluan MRT.",
+  "buttons": {
+    "line": "Talian",
+    "station": "Stesen",
+    "drawPath": "Lukis Laluan",
+    "plotStations": "Plot Stesen",
+    "resetMrtMap": "Set Semula Peta MRT",
+    "export": "Eksport",
+    "currentlyDrawing": "Sedang Melukis",
+    "currentlyPlotting": "Sedang Memplot",
+    "exitAction": "Keluar",
+    "autoAlignLabel": "Jajar Label Automatik",
+    "addPointBefore": "Tambah Titik Sebelum",
+    "addPointAfter": "Tambah Titik Selepas"
+  },
+  "sidebar": {
+    "currentlyWorkingOn": "Sedang Dikerjakan",
+    "lines": "Talian",
+    "stations": "Stesen",
+    "settings": "Tetapan"
+  },
+  "modals": {
+    "mrtLine": {
+      "create": "Cipta Talian MRT",
+      "update": "Kemas Kini Talian MRT"
+    },
+    "labelAlignment": "Penjajaran Label"
+  },
+  "inputs": {
+    "lineName": "Nama Talian",
+    "lineCode": "Kod Talian",
+    "lineColor": "Warna Talian",
+    "xCoordinate": "Koordinat X",
+    "yCoordinate": "Koordinat Y",
+    "stationCodes": "Kod Stesen",
+    "stationType": "Jenis Stesen",
+    "lines": "Talian",
+    "stationName": "Nama Stesen",
+    "textOffsetX": "Ofset Teks X",
+    "textOffsetY": "Ofset Teks Y",
+    "textAnchor": "Sauh Teks",
+    "colorOfSelectedLine": "Warna Talian Terpilih",
+    "backgroundImage": "Imej Latar Belakang",
+    "backgroundImageScale": "Skala Imej Latar Belakang",
+    "backgroundXOffset": "Ofset X Latar Belakang",
+    "backgroundYOffset": "Ofset Y Latar Belakang",
+    "alignmentDirection": "Arah Penjajaran",
+    "darkMode": "Mod Gelap",
+    "showBackgroundImage": "Tunjukkan Imej Latar Belakang"
+  },
+  "items": {
+    "station": "Stesen",
+    "line": "Talian"
+  },
+  "empty": {
+    "linePoints": "Tiada titik lagi. Klik pada peta untuk menambah titik.",
+    "station": {
+      "title": "Tiada Stesen MRT",
+      "description": "Klik butang di bawah untuk menambah stesen MRT baharu."
+    },
+    "stationSearch": {
+      "title": "Tiada Stesen Ditemui",
+      "description": "Tiada stesen yang sepadan dengan carian anda."
+    },
+    "mrtLines": {
+      "title": "Tiada Talian MRT",
+      "description": "Klik butang di atas untuk menambah talian MRT baharu."
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "title": "捷運線路圖構建器",
+  "description": "構建和可視化地鐵線路圖。",
+  "buttons": {
+    "line": "線路",
+    "station": "車站",
+    "drawPath": "繪製路徑",
+    "plotStations": "標繪車站",
+    "resetMrtMap": "重置捷運圖",
+    "export": "匯出",
+    "currentlyDrawing": "正在繪製",
+    "currentlyPlotting": "正在標繪",
+    "exitAction": "退出",
+    "autoAlignLabel": "自動對齊標籤",
+    "addPointBefore": "在前面添加點",
+    "addPointAfter": "在後面添加點"
+  },
+  "sidebar": {
+    "currentlyWorkingOn": "當前正在處理",
+    "lines": "線路",
+    "stations": "車站",
+    "settings": "設定"
+  },
+  "modals": {
+    "mrtLine": {
+      "create": "創建捷運線路",
+      "update": "更新捷運線路"
+    },
+    "labelAlignment": "標籤對齊"
+  },
+  "inputs": {
+    "lineName": "線路名稱",
+    "lineCode": "線路代碼",
+    "lineColor": "線路顏色",
+    "xCoordinate": "X 坐標",
+    "yCoordinate": "Y 坐標",
+    "stationCodes": "車站代碼",
+    "stationType": "車站類型",
+    "lines": "線路",
+    "stationName": "車站名稱",
+    "textOffsetX": "文字偏移 X",
+    "textOffsetY": "文字偏移 Y",
+    "textAnchor": "文字錨點",
+    "colorOfSelectedLine": "所選線路的顏色",
+    "backgroundImage": "背景圖片",
+    "backgroundImageScale": "背景圖片縮放",
+    "backgroundXOffset": "背景 X 偏移",
+    "backgroundYOffset": "背景 Y 偏移",
+    "alignmentDirection": "對齊方向",
+    "darkMode": "深色模式",
+    "showBackgroundImage": "顯示背景圖片"
+  },
+  "items": {
+    "station": "車站",
+    "line": "線路"
+  },
+  "empty": {
+    "linePoints": "尚未添加點。點擊地圖添加點。",
+    "station": {
+      "title": "沒有捷運站",
+      "description": "點擊下方按鈕添加新的捷運站。"
+    },
+    "stationSearch": {
+      "title": "未找到車站",
+      "description": "未找到與搜索查詢匹配的車站。"
+    },
+    "mrtLines": {
+      "title": "沒有捷運線路",
+      "description": "點擊上方按鈕添加新的捷運線路。"
+    }
+  }
+}

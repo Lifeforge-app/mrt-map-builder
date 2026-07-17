@@ -1,0 +1,72 @@
+{
+  "title": "地铁线路图构建器",
+  "description": "构建和可视化地铁线路图。",
+  "buttons": {
+    "line": "线路",
+    "station": "车站",
+    "drawPath": "绘制路径",
+    "plotStations": "标绘车站",
+    "resetMrtMap": "重置地铁图",
+    "export": "导出",
+    "currentlyDrawing": "正在绘制",
+    "currentlyPlotting": "正在标绘",
+    "exitAction": "退出",
+    "autoAlignLabel": "自动对齐标签",
+    "addPointBefore": "在前面添加点",
+    "addPointAfter": "在后面添加点"
+  },
+  "sidebar": {
+    "currentlyWorkingOn": "当前正在处理",
+    "lines": "线路",
+    "stations": "车站",
+    "settings": "设置"
+  },
+  "modals": {
+    "mrtLine": {
+      "create": "创建地铁线路",
+      "update": "更新地铁线路"
+    },
+    "labelAlignment": "标签对齐"
+  },
+  "inputs": {
+    "lineName": "线路名称",
+    "lineCode": "线路代码",
+    "lineColor": "线路颜色",
+    "xCoordinate": "X 坐标",
+    "yCoordinate": "Y 坐标",
+    "stationCodes": "车站代码",
+    "stationType": "车站类型",
+    "lines": "线路",
+    "stationName": "车站名称",
+    "textOffsetX": "文本偏移 X",
+    "textOffsetY": "文本偏移 Y",
+    "textAnchor": "文本锚点",
+    "colorOfSelectedLine": "选中线路的颜色",
+    "backgroundImage": "背景图片",
+    "backgroundImageScale": "背景图片缩放",
+    "backgroundXOffset": "背景 X 偏移",
+    "backgroundYOffset": "背景 Y 偏移",
+    "alignmentDirection": "对齐方向",
+    "darkMode": "深色模式",
+    "showBackgroundImage": "显示背景图片"
+  },
+  "items": {
+    "station": "车站",
+    "line": "线路"
+  },
+  "empty": {
+    "linePoints": "尚未添加点。点击地图添加点。",
+    "station": {
+      "title": "没有地铁站",
+      "description": "点击下方按钮添加新的地铁站。"
+    },
+    "stationSearch": {
+      "title": "未找到车站",
+      "description": "未找到与搜索查询匹配的车站。"
+    },
+    "mrtLines": {
+      "title": "没有地铁线路",
+      "description": "点击上方按钮添加新的地铁线路。"
+    }
+  }
+}

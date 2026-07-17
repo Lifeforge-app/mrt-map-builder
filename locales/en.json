@@ -1,0 +1,72 @@
+{
+  "title": "MRT Map Builder",
+  "description": "Build and visualize MRT railway maps.",
+  "buttons": {
+    "line": "Line",
+    "station": "Station",
+    "drawPath": "Draw Path",
+    "plotStations": "Plot Stations",
+    "resetMrtMap": "Reset MRT Map",
+    "export": "Export",
+    "currentlyDrawing": "Currently Drawing",
+    "currentlyPlotting": "Currently Plotting",
+    "exitAction": "Exit",
+    "autoAlignLabel": "Auto Align Label",
+    "addPointBefore": "Add Point Before",
+    "addPointAfter": "Add Point After"
+  },
+  "sidebar": {
+    "currentlyWorkingOn": "Currently Working On",
+    "lines": "Lines",
+    "stations": "Stations",
+    "settings": "Settings"
+  },
+  "modals": {
+    "mrtLine": {
+      "create": "Create MRT Line",
+      "update": "Update MRT Line"
+    },
+    "labelAlignment": "Label Alignment"
+  },
+  "inputs": {
+    "lineName": "Line Name",
+    "lineCode": "Line Code",
+    "lineColor": "Line Color",
+    "xCoordinate": "X Coordinate",
+    "yCoordinate": "Y Coordinate",
+    "stationCodes": "Station Codes",
+    "stationType": "Station Types",
+    "lines": "Lines",
+    "stationName": "Station Name",
+    "textOffsetX": "Text Offset X",
+    "textOffsetY": "Text Offset Y",
+    "textAnchor": "Text Anchor",
+    "colorOfSelectedLine": "Color of Selected Line",
+    "backgroundImage": "Background Image",
+    "backgroundImageScale": "Background Image Scale",
+    "backgroundXOffset": "Background X Offset",
+    "backgroundYOffset": "Background Y Offset",
+    "alignmentDirection": "Alignment Direction",
+    "darkMode": "Dark Mode",
+    "showBackgroundImage": "Show Background Image"
+  },
+  "items": {
+    "station": "Station",
+    "line": "Line"
+  },
+  "empty": {
+    "linePoints": "No points added yet. Click on the map to add points.",
+    "station": {
+      "title": "No MRT Stations",
+      "description": "Click the button below to add a new MRT station."
+    },
+    "stationSearch": {
+      "title": "No Stations Found",
+      "description": "No stations found matching your search query."
+    },
+    "mrtLines": {
+      "title": "No MRT Lines",
+      "description": "Click the button above to add a new MRT line."
+    }
+  }
+}
