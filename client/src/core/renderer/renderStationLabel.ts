@@ -20,7 +20,6 @@ function renderStationLabel({
     .attr('font-size', 10)
     .attr('font-family', 'LTAIdentityMedium')
     .attr('white-space', 'pre')
-    .attr('style', 'line-height: 1.2')
     .each(
       (
         _d: unknown,
@@ -58,14 +57,15 @@ function renderStationLabel({
           targetX = baseX - W / 2
         }
 
-        const N = lines.length
+        const H = bbox.height
+        const Y = bbox.y
 
         if (anchor.startsWith('top-')) {
-          targetY = baseY + 7
+          targetY = baseY - Y
         } else if (anchor.startsWith('middle-') || anchor === 'center') {
-          targetY = baseY - ((N - 1) * 12 - 7) / 2
+          targetY = baseY - Y - H / 2
         } else if (anchor.startsWith('bottom-')) {
-          targetY = baseY - (N - 1) * 12
+          targetY = baseY - Y - H
         }
 
         textElement.attr('x', targetX).attr('y', targetY)

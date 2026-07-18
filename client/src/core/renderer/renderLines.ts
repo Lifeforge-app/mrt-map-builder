@@ -8,6 +8,7 @@ import roundedPolygon from '../utils/roundedPolygon'
 function renderLines({
   g,
   mrtLines,
+  mrtStations,
   selectedLineIndex,
   settings,
   currentlyWorking,
@@ -17,6 +18,7 @@ function renderLines({
 }: {
   g: d3.Selection<SVGGElement | null, unknown, null, undefined>
   mrtLines: Line[]
+  mrtStations: Station[]
   selectedLineIndex: {
     index: number | null
     type: 'path_drawing' | 'station_plotting'
@@ -72,6 +74,19 @@ function renderLines({
         event.stopPropagation()
 
         const [x, y] = d3.pointer(event, g.node())
+
+        // Prevent plotting a new station if it's too close to any existing station
+        const isTooClose = mrtStations.some(s => {
+          const dx = s.x - x
+          const dy = s.y - y
+
+          return Math.sqrt(dx * dx + dy * dy) < 12
+        })
+
+        if (isTooClose) {
+          return
+        }
+
         const newStationId = v4()
 
         setMrtStations(prevStations => {

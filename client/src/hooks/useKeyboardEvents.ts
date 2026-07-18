@@ -6,10 +6,7 @@ import { useMRTMapContext } from '../contexts/MRTMapContext'
 
 function useKeyboardEvents() {
   const {
-    workingState: {
-      mode: currentlyWorking,
-      selectedLine: selectedLineIndex
-    },
+    workingState: { mode: currentlyWorking, selectedLine: selectedLineIndex },
     setMrtLines,
     setMrtStations,
     history,
@@ -37,64 +34,99 @@ function useKeyboardEvents() {
 
           if (lastPointActionIndex === -1) return
 
-          open(ConfirmationModal, {
-            title: 'Undo Last Point',
-            description:
-              'Are you sure you want to undo the last added coordinate point?',
-            onConfirm: async () => {
-              const lastPointAction = history[lastPointActionIndex] as {
-                type: 'line_point'
-                lineIndex: number
-                coordinate: [number, number]
+          const lastPointAction = history[lastPointActionIndex] as {
+            type: 'line_point'
+            lineIndex: number
+            coordinate: [number, number]
+          }
+
+          setMrtLines(prevLines =>
+            prevLines.map((line, index) => {
+              if (index !== selectedLineIndex.index) return line
+
+              const newPath = [...line.path]
+              const lastCoord = newPath[newPath.length - 1]
+
+              if (
+                lastCoord &&
+                lastCoord[0] === lastPointAction.coordinate[0] &&
+                lastCoord[1] === lastPointAction.coordinate[1]
+              ) {
+                newPath.pop()
               }
 
-              setMrtLines(prevLines =>
-                prevLines.map((line, index) => {
-                  if (index !== selectedLineIndex.index) return line
+              return { ...line, path: newPath }
+            })
+          )
 
-                  const newPath = [...line.path]
-                  const lastCoord = newPath[newPath.length - 1]
-
-                  if (
-                    lastCoord &&
-                    lastCoord[0] === lastPointAction.coordinate[0] &&
-                    lastCoord[1] === lastPointAction.coordinate[1]
-                  ) {
-                    newPath.pop()
-                  }
-
-                  return { ...line, path: newPath }
-                })
-              )
-
-              setHistory(prev =>
-                prev.filter((_, idx) => idx !== lastPointActionIndex)
-              )
-            }
-          })
+          setHistory(prev =>
+            prev.filter((_, idx) => idx !== lastPointActionIndex)
+          )
         } else if (selectedLineIndex.type === 'station_plotting') {
-          const lastStationActionIndex = history
-            .reverse()
-            .findIndex(action => action.type === 'station')
+          const lastActionIndex = history.reduceRight(
+            (acc, action, idx) =>
+              acc !== -1
+                ? acc
+                : action.type === 'station' ||
+                    action.type === 'station_interchange'
+                  ? idx
+                  : -1,
+            -1
+          )
 
-          if (lastStationActionIndex === -1) return
+          if (lastActionIndex === -1) return
 
-          open(ConfirmationModal, {
-            title: 'Undo Last Station',
-            description:
-              'Are you sure you want to undo the last added station?',
-            onConfirm: async () => {
-              const lastStationAction = history[lastStationActionIndex] as {
-                type: 'station'
+          const lastAction = history[lastActionIndex] as
+            | { type: 'station'; stationId: string }
+            | {
+                type: 'station_interchange'
                 stationId: string
+                lineName: string
+                code: string
               }
 
-              setMrtStations(prevStations =>
-                prevStations.filter(s => s.id !== lastStationAction.stationId)
-              )
+          const isInterchange = lastAction.type === 'station_interchange'
+
+          open(ConfirmationModal, {
+            title: isInterchange
+              ? 'Undo Interchange Conversion'
+              : 'Undo Last Station',
+            description: isInterchange
+              ? 'Are you sure you want to revert the last station interchange conversion?'
+              : 'Are you sure you want to undo the last added station?',
+            onConfirm: async () => {
+              if (lastAction.type === 'station') {
+                setMrtStations(prevStations =>
+                  prevStations.filter(s => s.id !== lastAction.stationId)
+                )
+              } else if (lastAction.type === 'station_interchange') {
+                setMrtStations(prevStations =>
+                  prevStations.map(s => {
+                    if (s.id === lastAction.stationId) {
+                      const newLines = (s.lines || []).filter(
+                        l => l !== lastAction.lineName
+                      )
+                      const newCodes = (s.codes || []).filter(
+                        c => c !== lastAction.code
+                      )
+                      const newType =
+                        newLines.length <= 1 ? 'station' : 'interchange'
+
+                      return {
+                        ...s,
+                        type: newType,
+                        lines: newLines,
+                        codes: newCodes
+                      }
+                    }
+
+                    return s
+                  })
+                )
+              }
 
               setHistory(prev =>
-                prev.filter((_, idx) => idx !== lastStationActionIndex)
+                prev.filter((_, idx) => idx !== lastActionIndex)
               )
             }
           })

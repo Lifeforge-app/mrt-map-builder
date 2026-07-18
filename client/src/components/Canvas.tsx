@@ -13,7 +13,7 @@ function Canvas() {
         <svg
           ref={ref}
           height="100%"
-          style={{ touchAction: 'none' }}
+          style={{ touchAction: 'none', userSelect: 'none' }}
           width="100%"
         >
           <g ref={gRef}></g>

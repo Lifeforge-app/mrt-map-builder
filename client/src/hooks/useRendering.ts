@@ -35,6 +35,7 @@ function useRendering() {
     renderLines({
       g,
       mrtLines,
+      mrtStations,
       selectedLineIndex,
       settings,
       currentlyWorking,
@@ -51,6 +52,7 @@ function useRendering() {
       selectedLineIndex,
       setMrtStations,
       setExpandedStationId,
+      setHistory,
       bgTempPalette,
       settings
     })

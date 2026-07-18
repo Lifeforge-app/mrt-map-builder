@@ -1,6 +1,7 @@
 import * as d3 from 'd3'
 import tinycolor from 'tinycolor2'
 
+import type { HistoryAction } from '../../typescript/history.interfaces'
 import type { Line, Settings, Station } from '../../typescript/mrt.interfaces'
 import getBoxPath from '../utils/getBoxPath'
 import onStationClicked from '../utils/onStationClicked'
@@ -10,10 +11,11 @@ function renderStations({
   g,
   mrtStations,
   mrtLines,
-  currentlyWorking,
   selectedLineIndex,
   setMrtStations,
   setExpandedStationId,
+  setHistory,
+  currentlyWorking,
   bgTempPalette,
   settings
 }: {
@@ -27,31 +29,48 @@ function renderStations({
   } | null
   setMrtStations: React.Dispatch<React.SetStateAction<Station[]>>
   setExpandedStationId: React.Dispatch<React.SetStateAction<string | null>>
+  setHistory: React.Dispatch<React.SetStateAction<HistoryAction[]>>
   bgTempPalette: Record<number, string>
   settings: Settings
 }) {
+  const currentLine =
+    selectedLineIndex && selectedLineIndex.index !== null
+      ? mrtLines[selectedLineIndex.index]
+      : null
+
   for (const station of mrtStations) {
+    const isPathDrawing =
+      currentlyWorking === 'line' && selectedLineIndex?.type === 'path_drawing'
+    const isStationPlotting =
+      currentlyWorking === 'line' &&
+      selectedLineIndex?.type === 'station_plotting'
+    const isAlreadyOnLine =
+      currentLine && (station.lines || []).includes(currentLine.name)
+
+    const shouldDisableInteraction =
+      isPathDrawing || (isStationPlotting && isAlreadyOnLine)
+
     const stationGroup = g
       .append('g')
-      .style('cursor', 'pointer')
+      .style('cursor', shouldDisableInteraction ? 'default' : 'pointer')
+      .style('pointer-events', shouldDisableInteraction ? 'none' : 'auto')
       .on('click', (event: MouseEvent) => {
-        if (
-          currentlyWorking === 'line' &&
-          selectedLineIndex?.type === 'path_drawing' &&
-          selectedLineIndex.index !== null
-        ) {
-          return
-        }
-
         event.stopPropagation()
         onStationClicked({
           mrtLines,
           mrtStations,
           selectedLineIndex,
           setMrtStations,
+          setHistory,
           station
         })
-        setExpandedStationId(station.id)
+
+        if (
+          !selectedLineIndex ||
+          selectedLineIndex.type !== 'station_plotting'
+        ) {
+          setExpandedStationId(station.id)
+        }
       })
 
     if (station.type === 'interchange') {
