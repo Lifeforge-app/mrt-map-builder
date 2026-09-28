@@ -12,7 +12,7 @@ import {
 } from '@lifeforge/ui'
 
 import { useMRTMapContext } from '../../../../contexts/MRTMapContext'
-import StationItem from './StationItem';
+import StationItem from './StationItem'
 
 function StationSection() {
   const { t } = useModuleTranslation()
@@ -33,7 +33,7 @@ function StationSection() {
           {t('sidebar.lines')}
         </Text>
       </Flex>
-      <Stack gap="sm" px="md">
+      <Stack px="md">
         <SearchInput
           bg={surface.lightInteractive}
           mb="md"
@@ -43,7 +43,7 @@ function StationSection() {
         />
         {mrtStations.length > 0 ? (
           filteredStations.length > 0 ? (
-            <Stack gap="sm">
+            <Stack>
               {filteredStations.map(station => (
                 <StationItem
                   key={station.id}

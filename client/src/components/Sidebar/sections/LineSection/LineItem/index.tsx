@@ -25,7 +25,7 @@ function LineItemInner() {
     >
       <LineHeader />
       {!collapsed && (
-        <Stack gap="sm" mt="md">
+        <Stack mt="md">
           {line.path.length > 0 ? (
             line.path.map((point, pointIndex) => (
               <CoordinateItem
@@ -56,11 +56,7 @@ function LineItem({
   setMrtLines: React.Dispatch<React.SetStateAction<Line[]>>
 }) {
   return (
-    <LineItemProvider
-      index={index}
-      line={line}
-      setMrtLines={setMrtLines}
-    >
+    <LineItemProvider index={index} line={line} setMrtLines={setMrtLines}>
       <LineItemInner />
     </LineItemProvider>
   )

@@ -39,7 +39,7 @@ function LineSection() {
         />
       </Flex>
       {mrtLines.length > 0 ? (
-        <Stack gap="sm">
+        <Stack>
           {mrtLines.map((line, index) => (
             <LineItem
               key={`line-${index}`}
